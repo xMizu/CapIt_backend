@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
     def create
-        expense = Expense.new(user_id: params[:user_id],category_id: params[:category_id], name: params[:name], description: params[:description], amount: params[:amount].to_i)
+        byebug
+        expense = Expense.new(user_id: params[:user_id],category_id: params[:category_id], name: params[:name], description: params[:description], amount: params[:amount].to_i, goal: params[:goal])
         if expense.save
             user = User.find(params[:user_id]).expenses.order(created_at: :desc)
             render json: user
