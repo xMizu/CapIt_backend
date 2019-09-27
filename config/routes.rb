@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   post '/login', to: 'auth#create'
   post '/signup', to: 'users#create'
+  post '/savings', to: 'expenses#savings'
   get '/user' , to: 'users#show'
   resources :expenses
   resources :categories
