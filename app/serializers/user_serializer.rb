@@ -9,7 +9,9 @@ class UserSerializer < ActiveModel::Serializer
  def savings 
   object.expenses.where(goal: true).order(created_at: :desc)
  end
- has_many :categories 
+ has_many :categories do
+  object.categories.uniq
+ end
 
 
 end
