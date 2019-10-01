@@ -42,7 +42,6 @@ Category.create(name: 'Personal Care')
     Expense.create(category_id: rand(1..20), 
     user_id: rand(1..10),
     name: 'Gotta Spend!',
-    description: 'Test',
     amount: rand(1000),
     goal: false,
     end: DateTime.now())
