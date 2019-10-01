@@ -12,6 +12,12 @@ class UserSerializer < ActiveModel::Serializer
  has_many :categories do
   object.categories.uniq
  end
+ has_many :incomes
 
+ def balance 
+  spending = object.expenses.sum(:amount)
+  income = object.incomes.sum(:amount)
+  return income - spending
+ end
 
 end

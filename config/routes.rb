@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :incomes
   post '/login', to: 'auth#create'
   post '/signup', to: 'users#create'
   post '/savings', to: 'expenses#savings'

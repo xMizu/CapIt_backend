@@ -9,7 +9,7 @@ require 'faker'
 # require 'date'
 
 10.times do 
-    User.create(username: Faker::Name.first_name ,password: '123',name: Faker::Name.first_name,balance: 0)
+    User.create(username: Faker::Name.first_name ,password: '123',name: Faker::Name.first_name, balance: 0)
 end
 
 # 10.times do 
@@ -46,4 +46,11 @@ Category.create(name: 'Personal Care')
     goal: false,
     end: DateTime.now())
 end
+
+10.times do 
+    Income.create(user_id: rand(1..10),
+    title: '$$$',
+    amount: rand(1000))
+end
+
 
