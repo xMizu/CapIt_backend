@@ -15,7 +15,7 @@ class UserSerializer < ActiveModel::Serializer
  has_many :incomes
 
  def balance 
-  spending = object.expenses.sum(:amount)
+  spending = object.expenses.where(goal: false).sum(:amount)
   income = object.incomes.sum(:amount)
   return income - spending
  end
