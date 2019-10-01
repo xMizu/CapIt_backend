@@ -9,7 +9,7 @@ class UsersController < ApplicationController
         if user.save
             render json: {user: UserSerializer.new(user) , token: JWT.encode({userId: user.id}, 'secret')}
         else
-            render json: {errors: user.errors.full_messages}
+            render json: {errors: user.errors.full_messages[0]}
         end
     end
 
