@@ -18,6 +18,6 @@ class UsersController < ApplicationController
         user_id = JWT.decode(token, 'secret')[0]["userId"]
         user = User.find(user_id)
         
-        render json: user, include: [:id ,:username, :name, :expenses, :categories]
+        render json: user, include: [:id ,:username, :name, :expenses, :categories, :incomes]
     end
 end
