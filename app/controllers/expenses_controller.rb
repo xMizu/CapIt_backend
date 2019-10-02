@@ -20,9 +20,11 @@ class ExpensesController < ApplicationController
     end
 
     def savings
+        token = request.headers['Authorization']
+        user_id = JWT.decode(token, 'secret')[0]["userId"]
+        user = User.find(user_id)
         expense = Expense.new(user_id: params[:user_id],category_id: params[:category_id], name: params[:name], amount: params[:amount].to_i, goal: true, end: params[:end])
         if expense.save
-            user = User.find(params[:user_id]).expenses.where(goal: true).order(created_at: :desc)
             render json: user
         else
             render json: {status: "error", message: expense.errors.full_messages}
@@ -30,10 +32,12 @@ class ExpensesController < ApplicationController
     end
 
     def savings_update
+        token = request.headers['Authorization']
+        user_id = JWT.decode(token, 'secret')[0]["userId"]
+        user = User.find(user_id)
         expense = Expense.find(params[:savings_id])
         if expense
             expense.update(name: params[:name], end: params[:end], amount: params[:amount])
-            user = User.find(params[:user_id]).expenses.where(goal: true).order(created_at: :desc)
             render json: user
         else
             render json: {status: "error", message: "Sorry we could not process this atm"}
