@@ -10,10 +10,12 @@ class ExpensesController < ApplicationController
     end
 
     def destroy 
+        token = request.headers['Authorization']
+        user_id = JWT.decode(token, 'secret')[0]["userId"]
+        user = User.find(user_id)
         expense = Expense.find(params[:id])
         if expense.destroy
-            expenses = expense.user.expenses.order(created_at: :desc)
-            render json: expenses
+            render json: user
         else
             render json: {status: "error", message: "Sorry we could not process this atm"}
         end
