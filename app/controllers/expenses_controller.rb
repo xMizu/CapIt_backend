@@ -28,6 +28,7 @@ class ExpensesController < ApplicationController
         user_id = JWT.decode(token, 'secret')[0]["userId"]
         user = User.find(user_id)
         expense = Expense.new(user_id: params[:user_id],category_id: params[:category_id], name: params[:name], amount: params[:amount].to_i, goal: true, end: params[:end])
+        byebug
         if expense.save
             render json: user
         else
