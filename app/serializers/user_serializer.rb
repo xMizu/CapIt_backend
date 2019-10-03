@@ -1,5 +1,5 @@
 class UserSerializer < ActiveModel::Serializer
-  attributes :id, :username, :name , :savings , :balance, 
+  attributes :id, :username, :name , :savings , :balance
 
 
  has_many :expenses do 
@@ -20,11 +20,6 @@ class UserSerializer < ActiveModel::Serializer
   return income - spending
  end
 
- def deadSavings 
-    dead = savings.select do |saving| 
-      DateTime.now() > saving.end
-    end
-  end
 
 
 end
